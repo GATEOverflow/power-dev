@@ -77,9 +77,13 @@ jobs:
         cm pull repo mlcommons@ck
         cm run script --quiet --tags=get,sys-utils-cm
 
+    - name: Test git clone
+      run: |
+        git clone https://github.com/mlcommons/power
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
         git clone https://github.com/mlcommons/power
+   
         cm run script --tags=run,mlperf,power,server  --screen=yes  --device_type=0 --quiet
         cm run script --tags=run,mlperf,inference,generate-run-cmds,_submission,_short --submitter="cTuning" --model=resnet50 --backend=${{ matrix.backend }} --device=cpu --scenario=Offline --test_query_count=5 --precision=fp32 --quiet --power=yes --adr.mlperf-power-client.power_server=localhost
 
