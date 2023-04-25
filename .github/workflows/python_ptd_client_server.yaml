@@ -87,6 +87,6 @@ jobs:
 
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
-        cm run script --tags=run,mlperf,inference,generate-run-cmds,_submission,_short,_performance-only --submitter="cTuning" --model=resnet50 --backend=onnxruntime --device=cpu --scenario=Offline --test_query_count=5 --precision=fp32 --quiet --power=yes
+        cm run script --tags=run,mlperf,inference,generate-run-cmds,_submission,_short --submitter="cTuning" --model=resnet50 --backend=onnxruntime --device=cpu --scenario=Offline --test_query_count=5 --precision=fp32 --quiet --power=yes
 
 
