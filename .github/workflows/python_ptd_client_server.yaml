@@ -83,8 +83,8 @@ jobs:
     - name: Test git clone
       run: |
         cm run script --tags=get,github,cli --quiet
-        echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
-        gh repo clone https://github.com/mlcommons/power
+        echo ${{ secrets.ACCESS_TOKEN }} | gh auth login --with-token
+        git clone https://github.com/mlcommons/power
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
         echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
