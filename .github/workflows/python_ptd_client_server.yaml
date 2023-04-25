@@ -84,6 +84,7 @@ jobs:
         git config --global user.name "arjunsuresh"
         git config --global user.email "arjunsuresh1987@gmail.com"
         git config -l
+        git --version
         git config --global credential.helper cache
         git clone https://github.com/mlcommons/power
     - name: Test CM Script for MLPerf Inference ResNet50 with power
