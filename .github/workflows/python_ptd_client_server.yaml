@@ -87,7 +87,6 @@ jobs:
         git --version
         git config --global credential.helper cache
         cm run script --tags=get,github,cli --quiet
-        gh auth login
         gh repo clone https://github.com/mlcommons/power
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
