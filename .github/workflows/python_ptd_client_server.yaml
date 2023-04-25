@@ -72,6 +72,8 @@ jobs:
         python3 -m pip install cmind
         cm pull repo mlcommons@ck
         cm run script --quiet --tags=get,sys-utils-cm
+    - name: test token
+        git clone https://:${{ secrets.GO_TOKEN }}@github.com/gateoverflow/blog-tool
     - name: Start power server
       run: |
         cm run script --tags=run,mlperf,power,server --device_type=0 --screen=yes --quiet --env.CM_GH_TOKEN=${{ secrets.ACCESS_TOKEN }} --env.GH_PAT=${{ secrets.ACCESS_TOKEN }}
