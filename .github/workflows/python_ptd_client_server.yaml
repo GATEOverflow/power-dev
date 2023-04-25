@@ -66,7 +66,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-        access-token: ${{ secrets.ACCESS_TOKEN }}
+        repo-token: ${{ secrets.ACCESS_TOKEN }}
         repository: 'power'
     - name: Install dependencies
       run: |
@@ -76,10 +76,6 @@ jobs:
         echo ${{ secrets.TEST }}
         cm pull repo mlcommons@ck
         cm run script --quiet --tags=get,sys-utils-cm
-    - name: Configure git
-      env:
-        TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      run: git config --global url."https://${TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
     - name: Test git clone
       run: |
         git clone https://github.com/mlcommons/power
