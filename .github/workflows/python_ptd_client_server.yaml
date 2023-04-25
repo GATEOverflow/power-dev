@@ -88,7 +88,7 @@ jobs:
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
         echo ${{ secrets.USER_TOKEN }} | gh auth login --with-token
-        cm run script --tags=run,docker,container --cm_repo=ctuning@mlcommons-ck --gh_token=${{ secrets.USER_TOKEN }} --docker_os=ubuntu --docker_os_version=22.04  --port_maps,=4950:4950 --run_cmd="cm run script --tags=run,mlperf,power,server --device_type=0 --screen=yes
+        cm run script --tags=run,docker,container --cm_repo=ctuning@mlcommons-ck --gh_token=${{ secrets.USER_TOKEN }} --docker_os=ubuntu --docker_os_version=22.04  --port_maps,=4950:4950 --run_cmd="cm run script --tags=run,mlperf,power,server --device_type=0 --screen=yes"
         cm run script --tags=run,mlperf,inference,generate-run-cmds,_submission,_short --submitter="cTuning" --model=resnet50 --backend=onnxruntime --device=cpu --scenario=Offline --test_query_count=5 --precision=fp32 --quiet --power=yes --adr.mlperf-power-client.power_server=localhost
         cm run script --tags=run,mlperf,power,server  --screen=yes  --device_type=0 --quiet --env.CM_GH_TOKEN=${{ secrets.USER_TOKEN }}
 
