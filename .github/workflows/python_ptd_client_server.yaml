@@ -66,8 +66,8 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-        token: ${{ secrets.ACCESS_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        token: ${{ secrets.USER_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.USER_TOKEN }}
         FIRST_NAME: Mona
         LAST_NAME: Octocat
         repository: 'power'
@@ -76,7 +76,7 @@ jobs:
         python3 -m pip install --upgrade pip
         python3 -m pip install cmind
         echo ${{ secrets.ACCESS_TOKEN }}
-        echo ${{ secrets.TEST }}
+        echo ${{ secrets.USER_TOKEN }}
         cm pull repo mlcommons@ck
         cm run script --quiet --tags=get,sys-utils-cm
     - name: Test git clone
