@@ -68,6 +68,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
         token: ${{ secrets.USER_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.USER_TOKEN }}
+        GH_TOKEN: ${{ secrets.USER_TOKEN }}
         FIRST_NAME: Mona
         LAST_NAME: Octocat
         repository: 'power'
