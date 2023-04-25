@@ -60,7 +60,7 @@ jobs:
         on: [ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
@@ -72,42 +72,10 @@ jobs:
         python3 -m pip install cmind
         cm pull repo mlcommons@ck
         cm run script --quiet --tags=get,sys-utils-cm
-    - name: test token
-      run: |
-        git clone https://git:${{ secrets.GO_TOKEN }}@github.com/gateoverflow/blog-tool
     - name: Start power server
       run: |
-        cm run script --tags=run,mlperf,power,server --device_type=0 --screen=yes --quiet --env.CM_GH_TOKEN=${{ secrets.USER_TOKEN }}
+        cm run script --tags=run,mlperf,power,server --device_type=0 --screen=yes --quiet --env.CM_GH_TOKEN=${{ secrets.ACCESS_TOKEN }}
 
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
         cm run script --tags=run,mlperf,inference,generate-run-cmds,_performance-only,_short --submitter="cTuning" --model=resnet50 --backend=onnxruntime --device=cpu --scenario=Offline --test_query_count=5 --precision=fp32 --quiet --power=yes
-      
-  cm_check_windows:
-    name: Check power workflow windows
-    runs-on: "${{ matrix.on }}"
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: [ 3.9 ]
-        on: [windows-latest]
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python3 -m pip install --upgrade pip
-        python3 -m pip install cmind
-        cm pull repo mlcommons@ck
-    - name: test token
-      run: |
-        git clone https://git:${{ secrets.GO_TOKEN }}@github.com/gateoverflow/blog-tool
-
-
-
-
