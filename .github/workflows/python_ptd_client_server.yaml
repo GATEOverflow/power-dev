@@ -82,19 +82,12 @@ jobs:
         cm run script --quiet --tags=get,sys-utils-cm
     - name: Test git clone
       run: |
-        git config --global user.name "arjunsuresh"
-        git config --global user.email "arjunsuresh1987@gmail.com"
-        git config -l
-        git --version
-        git config --global credential.helper cache
         cm run script --tags=get,github,cli --quiet
-        export GH_TOKEN=${{ secrets.USER_TOKEN }}
-        gh repo clone https://github.com/mlcommons/power
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
         git clone https://github.com/mlcommons/power
    
-        cm run script --tags=run,mlperf,power,server  --screen=yes  --device_type=0 --quiet
+        cm run script --tags=run,mlperf,power,server  --screen=yes  --device_type=0 --quiet --env.GH_TOKEN=${{ secrets.USER_TOKEN }}
         cm run script --tags=run,mlperf,inference,generate-run-cmds,_submission,_short --submitter="cTuning" --model=resnet50 --backend=${{ matrix.backend }} --device=cpu --scenario=Offline --test_query_count=5 --precision=fp32 --quiet --power=yes --adr.mlperf-power-client.power_server=localhost
 
 
