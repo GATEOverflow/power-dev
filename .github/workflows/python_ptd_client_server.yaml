@@ -74,7 +74,7 @@ jobs:
         cm run script --quiet --tags=get,sys-utils-cm
     - name: Start power server
       run: |
-        cm run script --tags=run,mlperf,power,server --device_type=0 --screen=yes --quiet --env.CM_GH_TOKEN=${{ secrets.ACCESS_TOKEN }}
+        cm run script --tags=run,mlperf,power,server --device_type=0 --screen=yes --quiet --env.CM_GH_TOKEN=${{ secrets.ACCESS_TOKEN }} --env.GH_PAT=${{ secrets.ACCESS_TOKEN }}
 
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
