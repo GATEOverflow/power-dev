@@ -67,6 +67,9 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         token: ${{ secrets.ACCESS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        FIRST_NAME: Mona
+        LAST_NAME: Octocat
         repository: 'power'
     - name: Install dependencies
       run: |
