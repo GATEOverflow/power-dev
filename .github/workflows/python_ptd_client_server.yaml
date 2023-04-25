@@ -83,11 +83,11 @@ jobs:
     - name: Test git clone
       run: |
         cm run script --tags=get,github,cli --quiet
-        echo ${{ secrets.ACCESS_TOKEN }} | gh auth login --with-token
+        echo ${{ secrets.USER_TOKEN }} | gh auth login --with-token
         git clone https://github.com/mlcommons/power
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
-        echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
+        echo ${{ secrets.USER_TOKEN }} | gh auth login --with-token
         cm run script --tags=run,mlperf,power,server  --screen=yes  --device_type=0 --quiet --env.GH_TOKEN=${{ secrets.USER_TOKEN }}
         cm run script --tags=run,mlperf,inference,generate-run-cmds,_submission,_short --submitter="cTuning" --model=resnet50 --backend=${{ matrix.backend }} --device=cpu --scenario=Offline --test_query_count=5 --precision=fp32 --quiet --power=yes --adr.mlperf-power-client.power_server=localhost
 
