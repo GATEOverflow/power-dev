@@ -66,9 +66,8 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-        access-token: ${{ secrets.TEST }}
-        repo-token: ${{ secrets.ACCESS_TOKEN }}
-
+        access-token: ${{ secrets.ACCESS_TOKEN }}
+        repository: 'power'
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
