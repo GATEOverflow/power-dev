@@ -86,7 +86,7 @@ jobs:
         git config -l
         git --version
         git config --global credential.helper cache
-        git clone https://github.com/mlcommons/power
+        git clone https://github.com/mlcommons/power.git
     - name: Test CM Script for MLPerf Inference ResNet50 with power
       run: |
         git clone https://github.com/mlcommons/power
